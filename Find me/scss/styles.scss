@@ -1,0 +1,61 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: Roboto, sans-serif;
+  font-size: 10px;
+  padding: 2rem;
+  background: grey;
+}
+
+.name-game{
+  font-size: 3.2em;
+  font-weight: 700;
+  color: red;
+}
+.wrapper{
+  margin: 0 auto;
+  width: 50vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(15vw, auto);
+
+  .box{
+    background-color: #444;
+    color: #fff;
+    border-radius: 100%;
+
+    padding: 1rem;
+    font-size: 1.6rem;
+    text-align: center;
+    background-image: url('../rssticky/rss-logo-CM8B7fA7.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+//**Animation**//
+.box:hover {
+	animation: bounce infinite 1.0s;
+  cursor: pointer;
+}
+@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		transform: translateY(-20px);
+		transform: translateY(-20px);
+	}
+
+	80% {
+		transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+}
