@@ -1,0 +1,30 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: Roboto, sans-serif;
+  font-size: 10px;
+  padding: 2rem;
+}
+
+.name-game{
+  font-size: 3.2em;
+  font-weight: 700;
+  color: red;
+}
+.wrapper{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  .box{
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+}
