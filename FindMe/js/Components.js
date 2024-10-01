@@ -1,6 +1,6 @@
 export class Component {
   node = null;
-  #childNode = [];
+  childNode = [];
   constructor({ tag = "div", className = "", text = "", id = "" }, ...childNode) {
     const node = document.createElement(tag);
     node.className = className;
@@ -16,7 +16,7 @@ export class Component {
   }
 
   append(child) {
-    this.#childNode.push(child);
+    this.childNode.push(child);
     this.node.append(child.getNode());
   }
   appendChildren(childNode) {
@@ -28,7 +28,7 @@ export class Component {
     return this.node;
   }
   getChild() {
-    return this.#childNode;
+    return this.childNode;
   }
   setText(content) {
     this.node.textContent = content;
@@ -36,12 +36,15 @@ export class Component {
   toggleClass(className) {
     this.node.classList.toggle(className);
   }
+  setAttributes(attr, val) {
+    this.node.setAttribute(attr, val);
+  }
 
   removeChildren() {
-    this.#childNode.forEach((child) => {
+    this.childNode.forEach((child) => {
       child.destroy();
     });
-    this.#childNode.length = 0;
+    this.childNode.length = 0;
   }
   remove() {
     this.removeChildren();

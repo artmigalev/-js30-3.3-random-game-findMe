@@ -1,10 +1,25 @@
-import { popup } from "./popup.js";
+import { popup, resultGame } from "./popup.js";
 
-const boxes = document.getElementsByClassName("box");
+export const boxes = document.getElementsByClassName("box");
 const wrapper = document.querySelector(".wrapper");
 const winerImg = "./rssticky/contribute.webp";
 const loseImg = "./rssticky/mentors-wanted.webp";
+const attemptsCount = document.querySelector(".attemps");
+const modal = document.querySelector(".popup");
 let attempts = 3;
+let winnerClick = 0
+resultGame(true);
+console.log();window.addEventListener("load", (event) => {
+  Array.from(boxes).forEach(function (item,index) {
+
+     item.classList.add("loadingCards");
+
+   });
+
+
+
+});
+
 
 const randomWinnerIndex = () => {
   let indArr = new Set(Array.from({ length: boxes.length }, () => Math.round(Math.random(8) * 10)));
@@ -18,20 +33,32 @@ function clickedBox(event) {
   const click = event.target;
   if (click.className === "box") {
     console.log(winnerIndices);
-    attempts--
     if (winnerIndices.includes(checked(click))) {
-      click.classList.add("cliked");
+      winnerClick++;
+      if (winnerClick === 3) {
+        wrapper.removeEventListener("click", clickedBox);
+
+        resultGame(true);
+      }
+      click.classList.add("clicked");
       setTimeout(() => {
-        click.classList.remove("cliked");
+        click.classList.remove("clicked");
         click.style.backgroundImage = `url(${winerImg})`;
 
         click.classList.add("disabled");
       }, 2000);
 
     } else {
-      click.classList.add("cliked");
+      attemptsCount.innerHTML = `You have ${--attempts} attempts` ;
+      if (attempts === 0) {
+        wrapper.removeEventListener('click',clickedBox)
+        resultGame(false);
+
+
+      }
+      click.classList.add("clicked");
       setTimeout(() => {
-        click.classList.remove("cliked");
+        click.classList.remove("clicked");
         click.style.backgroundSize = "5em";
         click.style.backgroundImage = `url(${loseImg})`;
 
