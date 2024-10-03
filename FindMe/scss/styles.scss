@@ -3,7 +3,14 @@
   margin: 0;
   padding: 0;
 }
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
+}
 body {
+  height: 100vh;
   font-family: Roboto, sans-serif;
   font-size: 10px;
   padding: 2rem;
@@ -18,7 +25,7 @@ body {
   font-weight: 700;
   color: red;
 }
-.attemps{
+.attemps {
   font-size: 2em;
   font-weight: 700;
   color: red;
@@ -26,16 +33,20 @@ body {
 .wrapper {
   margin: 0 auto;
   width: 50vw;
+  height: 70vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(15vw, auto);
+  position: relative;
+  top: 0;
 
   .box {
     background-color: #444;
     color: #fff;
     border-radius: 100%;
-
+    width: 15rem;
+    height: 15rem;
     padding: 1rem;
     font-size: 1.6rem;
     text-align: center;
@@ -43,6 +54,33 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+  }
+}
+.footer {
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .item {
+      margin: 0 1rem;
+      .year {
+        font-size: 3em;
+      }
+      .github-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5rem;
+        object {
+          width: 5rem;
+        }
+      }
+    }
   }
 }
 
@@ -95,7 +133,6 @@ body {
   padding: 1em;
   margin: 0 auto;
   width: max-content;
-  // height: 100%;
   position: fixed;
   top: 30%;
   flex-direction: column;
@@ -105,13 +142,20 @@ body {
   box-shadow:
     rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
-
+  .modal-text{
+    order: 1;
+    font-size: 3rem;
+    font-weight: 700;
+    color: red;
+    text-align: center;
+  }
   .container {
     padding: 0.5em;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    margin: 1rem 0;
     button {
       padding: 0.5em;
     }

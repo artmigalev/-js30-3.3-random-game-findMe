@@ -35,8 +35,7 @@ const popup = new Component(
         Array.from(boxes).forEach(function (item, index) {
           item.classList.add("disabled");
         });
-        document.querySelector(".popup").close()
-
+        document.querySelector(".popup").close();
       },
     }),
   ),
@@ -44,25 +43,37 @@ const popup = new Component(
 console.log(popup);
 popup.setAttributes("open", true);
 
-
 body.append(popup.getNode());
 
-
-const resultGame= (winner=true)=>{
-  const {childNode} = popup.childNode[1]
+const resultGame = (winner = true) => {
+  const { childNode } = popup.childNode[1];
   childNode[0].node.innerHTML = "Try Again";
   if (winner) {
     popup.childNode[0].node.src = "./rssticky/winner.webp";
+    popup.append(
+      new Component(
+        {
+          tag: "p",
+          className: "modal-text",
+        text: "You win!"}
+      )
+    )
     childNode[0].onClick = () => {
       document.location.reload();
-      console.log('reload');
-    }
+      console.log("reload");
+    };
   } else {
     popup.childNode[0].node.src = "./rssticky/lose.webp";
+    popup.append(
+      new Component({
+        tag: "p",
+        className: "modal-text",
+        text: "You Lose!",
+      }),
+    );
   }
   console.log(childNode[0]);
   return body.append(popup.getNode().showModal());
-}
+};
 
-
-export { popup,resultGame };
+export { popup, resultGame };

@@ -7,19 +7,13 @@ const loseImg = "./rssticky/mentors-wanted.webp";
 const attemptsCount = document.querySelector(".attemps");
 const modal = document.querySelector(".popup");
 let attempts = 3;
-let winnerClick = 0
-resultGame(true);
-console.log();window.addEventListener("load", (event) => {
-  Array.from(boxes).forEach(function (item,index) {
-
-     item.classList.add("loadingCards");
-
-   });
-
-
-
+let winnerClick = 0;
+console.log();
+window.addEventListener("load", (event) => {
+  Array.from(boxes).forEach(function (item, index) {
+    item.classList.add("loadingCards");
+  });
 });
-
 
 const randomWinnerIndex = () => {
   let indArr = new Set(Array.from({ length: boxes.length }, () => Math.round(Math.random(8) * 10)));
@@ -33,6 +27,8 @@ function clickedBox(event) {
   const click = event.target;
   if (click.className === "box") {
     console.log(winnerIndices);
+    click.classList.add("disabled");
+    click.classList.add("clicked");
     if (winnerIndices.includes(checked(click))) {
       winnerClick++;
       if (winnerClick === 3) {
@@ -40,29 +36,25 @@ function clickedBox(event) {
 
         resultGame(true);
       }
-      click.classList.add("clicked");
+
+      click.classList.add("disabled");
       setTimeout(() => {
-        click.classList.remove("clicked");
         click.style.backgroundImage = `url(${winerImg})`;
 
-        click.classList.add("disabled");
+        // click.classList.add("disabled");
       }, 2000);
-
     } else {
-      attemptsCount.innerHTML = `You have ${--attempts} attempts` ;
+      attemptsCount.innerHTML = `You have ${--attempts} attempts`;
       if (attempts === 0) {
-        wrapper.removeEventListener('click',clickedBox)
+        wrapper.removeEventListener("click", clickedBox);
         resultGame(false);
-
-
       }
-      click.classList.add("clicked");
       setTimeout(() => {
-        click.classList.remove("clicked");
+        // click.classList.remove("clicked");
         click.style.backgroundSize = "5em";
         click.style.backgroundImage = `url(${loseImg})`;
 
-        click.classList.add("disabled");
+        // click.classList.add("disabled");
       }, 2000);
     }
   }
@@ -74,4 +66,3 @@ function checked(click) {
   return ind;
 }
 wrapper.addEventListener("click", clickedBox);
-
